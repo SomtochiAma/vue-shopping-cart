@@ -59,7 +59,10 @@ Vue.component('product', {
                 <td>{{ product.desc}}</td>
                 <td>{{ product.quantity}}</td>
                 <td>{{ product.price}}</td>
-                <td><button class="btn btn-danger removeBtn" @click="deleteProduct(product.name)">REMOVE</button><button class="btn btn-primary">ADD TO CART</button></td>
+                <td>
+                    <button class="btn btn-danger removeBtn" @click="deleteProduct(product.name)">REMOVE</button>
+                    <button class="btn btn-primary" @click="addProduct(product)">ADD TO CART</button>
+                </td>
             </tr>
         </tbody>
     `,
@@ -68,9 +71,13 @@ Vue.component('product', {
 
     
     methods: {
-        deleteProduct(productName) {
-            this.$emit('remove-product', productName)
-        }
+        deleteProduct(productObject) {
+            this.$emit('remove-product', productObject)
+        },
+
+        addProduct(productName) {
+            this.$emit('add-product', productName)
+        },
     }
 })
 
@@ -86,6 +93,8 @@ new Vue({
         },
 
         addedProducts: [],
+
+        cart: [],
     },
 
     methods: {
@@ -105,6 +114,11 @@ new Vue({
 
         deleteProduct(productName) {
             this.addedProducts = this.addedProducts.filter( product => product.name !== productName)
+        },
+
+        addProduct(product) {
+            this.cart.push(product);
+            console.log(this.cart)
         }
     }
 

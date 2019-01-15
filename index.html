@@ -23,7 +23,7 @@
 
             <h4 class="table-titles">Available Products</h4>
             <product-table>
-                <product :events="addedProducts" @remove-product="deleteProduct"></product>
+                <product :events="addedProducts" @remove-product="deleteProduct" @add-product="addProduct"></product>
             </product-table>
         </div>
 
