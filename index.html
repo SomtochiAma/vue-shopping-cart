@@ -20,7 +20,13 @@
                 <form-elem type="number" name="Price" v-model="product.price"></form-elem>
                 <button style="margin-top: 15px" type="" class="btn btn-primary" @click="giveProductInfo">Add Product</button>
             </form-group>
+
+            <h4 class="table-titles">Available Products</h4>
+            <product-table>
+                <product :events="addedProducts" @remove-product="deleteProduct"></product>
+            </product-table>
         </div>
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
