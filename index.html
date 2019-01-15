@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Atlas-Interns">
+        <meta name="Description" content="This webpage is a simple Shopping webpage">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Shopping Cart</title>
+    </head>
+
+    <body>
+        
+        <div id="root">
+            <form-group>
+                <form-elem type="text" name="Product Id" v-model="product.name"></form-elem>
+                <form-elem type="text" name="Product Description" v-model="product.desc"></form-elem>
+                <form-elem type="number" name="Number" v-model="product.quantity"></form-elem>
+                <form-elem type="number" name="Price" v-model="product.price"></form-elem>
+                <button style="margin-top: 15px" type="" class="btn btn-primary" @click="giveProductInfo">Add Product</button>
+            </form-group>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
