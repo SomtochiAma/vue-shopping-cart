@@ -98,7 +98,18 @@ new Vue({
         addedProducts: [],
 
         cart: [],
+
+        grandTotal: 0,
     },
+
+    computed: {
+        calcGrandTotal() {
+            console.log("Calculating");
+            this.grandTotal = this.cart.reduce((total, product) => {
+                return total + (product.price * product.quantity)
+            }, 0)
+        }
+   },
 
     methods: {
         giveProductInfo() {
@@ -119,6 +130,7 @@ new Vue({
             console.log(bool)
             if (bool) {
                 this.cart = this.cart.filter( product => product.name !== productName)
+                this.calcGrandTotal();
             } else {
                 this.addedProducts = this.addedProducts.filter( product => product.name !== productName)
 
@@ -127,6 +139,7 @@ new Vue({
 
         addProduct(product) {
             this.cart.push(product);
+            this.calcGrandTotal();
             console.log(this.cart)
         }
     }

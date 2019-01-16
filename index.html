@@ -29,6 +29,8 @@
             <product-table>
                 <product :events="cart" :is-cart="true" @remove-product="deleteProduct" @add-product="addProduct"></product>
             </product-table>
+
+            <h3 id="grandTotal">Grand total : {{ grandTotal }}</h3>
         </div>
 
 
