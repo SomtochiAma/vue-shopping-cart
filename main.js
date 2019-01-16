@@ -60,19 +60,22 @@ Vue.component('product', {
                 <td>{{ product.quantity}}</td>
                 <td>{{ product.price}}</td>
                 <td>
-                    <button class="btn btn-danger removeBtn" @click="deleteProduct(product.name)">REMOVE</button>
-                    <button class="btn btn-primary" @click="addProduct(product)">ADD TO CART</button>
+                    <button class="btn btn-danger removeBtn" @click="deleteProduct(product.name, isCart)">REMOVE</button>
+                    <button class="btn btn-primary" @click="addProduct(product)" v-show="!isCart">ADD TO CART</button>
                 </td>
             </tr>
         </tbody>
     `,
 
-    props: ['events'],
+    props: {
+        events: Array,  
+        'is-cart': {default: false} 
+    },
 
     
     methods: {
-        deleteProduct(productObject) {
-            this.$emit('remove-product', productObject)
+        deleteProduct(productObject, bool) {
+            this.$emit('remove-product', productObject, bool)
         },
 
         addProduct(productName) {
@@ -112,8 +115,14 @@ new Vue({
             
         },
 
-        deleteProduct(productName) {
-            this.addedProducts = this.addedProducts.filter( product => product.name !== productName)
+        deleteProduct(productName, bool) {
+            console.log(bool)
+            if (bool) {
+                this.cart = this.cart.filter( product => product.name !== productName)
+            } else {
+                this.addedProducts = this.addedProducts.filter( product => product.name !== productName)
+
+            }
         },
 
         addProduct(product) {

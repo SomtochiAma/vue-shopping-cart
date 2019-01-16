@@ -25,6 +25,10 @@
             <product-table>
                 <product :events="addedProducts" @remove-product="deleteProduct" @add-product="addProduct"></product>
             </product-table>
+            <h4 class="table-titles">Your Cart</h4>
+            <product-table>
+                <product :events="cart" :is-cart="true" @remove-product="deleteProduct" @add-product="addProduct"></product>
+            </product-table>
         </div>
 
 
