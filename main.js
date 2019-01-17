@@ -10,7 +10,7 @@ Vue.component('form-elem', {
     template: `
         <div class="form-group">
             <label for="">{{name}}</label>
-            <input :type="type" class="form-control" :id="this.id"  @input="$emit('input', $event.target.value)" :placeholder="'Enter ' + name">
+            <input :type="type" class="form-control" :id="this.id"  @input="$emit('input', $event.target.value)" :placeholder="'Enter ' + name" required>
         </div>
     `,
 
@@ -105,7 +105,7 @@ new Vue({
     computed: {
         calcGrandTotal() {
             console.log("Calculating");
-            this.grandTotal = this.cart.reduce((total, product) => {
+            return this.cart.reduce((total, product) => {
                 return total + (product.price * product.quantity)
             }, 0)
         }
@@ -120,17 +120,15 @@ new Vue({
                 quantity: this.product.quantity,
                 price: this.product.price,
             }
-
             console.log(newProduct);
-            this.addedProducts.push(newProduct)
-            
+            this.addedProducts.push(newProduct);           
         },
 
         deleteProduct(productName, bool) {
             console.log(bool)
             if (bool) {
                 this.cart = this.cart.filter( product => product.name !== productName)
-                this.calcGrandTotal();
+                this.grandTotal =  this.calcGrandTotal;
             } else {
                 this.addedProducts = this.addedProducts.filter( product => product.name !== productName)
 
@@ -139,7 +137,7 @@ new Vue({
 
         addProduct(product) {
             this.cart.push(product);
-            this.calcGrandTotal();
+            this.grandTotal = this.calcGrandTotal;
             console.log(this.cart)
         }
     }
